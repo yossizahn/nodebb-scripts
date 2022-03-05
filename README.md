@@ -1,2 +1,2 @@
 # nodebb-scripts
-Scripts to enhance Nodebb fuorums
+Scripts to enhance Nodebb forums
