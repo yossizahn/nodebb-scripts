@@ -1,0 +1,36 @@
+.copy-code {
+    background-color: #3c3c3c;
+    border-radius: 5px;
+    padding: 7px;
+    color: #ffffff;
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    opacity: 50%;
+    cursor: pointer;
+    font-size: 15px
+}
+.copy-code:hover {
+    opacity: 100%;
+}
+.pre-wrapper {
+    position: relative;
+}
+.pre-wrapper:hover .copy-code {
+    display: block;
+}
+
+pre::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 20px;
+}
+pre::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 20px;
+}
