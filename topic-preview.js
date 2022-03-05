@@ -1,7 +1,10 @@
-(function() {
+(async function() {
     /* globals require, $, socket, app */
     'use strict';
-    const translate = require('translator').translate
+    function requirePromise (arg) {
+        return new Promise(resolve => require(arg, resolve))
+    }
+    const translate = (await requirePromise(['translator'])).translate
     function getTidFirstPost(tid) {
         return socket.emit('topics.loadMore', {
             tid,
@@ -16,7 +19,7 @@
             let content
             try {
                 const data = await getTidFirstPost(self.data('my-tid'))
-                content = await translate(data.posts.find(p => p.pid === data.mainPid)?.content)
+                content = await translate(data.mainPost?.content || data.posts.find(p => p.pid === data.mainPid)?.content)
             } catch (err) {
                 console.error(err)
                 content = await translate(`<span style="color:red;">שגיאה: </span>${err.message}`)
