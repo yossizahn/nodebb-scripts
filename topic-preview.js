@@ -1,10 +1,7 @@
 (async function() {
-    /* globals require, $, socket, app */
+    /* globals $, socket, app */
     'use strict';
-    function requirePromise (arg) {
-        return new Promise(resolve => require(arg, resolve))
-    }
-    const translate = (await requirePromise(['translator'])).translate
+    const { translate } = (await app.require('translator'));
     function getTidFirstPost(tid) {
         return socket.emit('topics.loadMore', {
             tid,
