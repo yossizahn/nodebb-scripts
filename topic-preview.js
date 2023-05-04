@@ -1,10 +1,7 @@
 (async function() {
-    /* globals require, $, socket, app */
+    /* globals $, socket, app */
     'use strict';
-    function requirePromise (arg) {
-        return new Promise(resolve => require(arg, resolve))
-    }
-    const translate = (await requirePromise(['translator'])).translate
+    const { translate } = await app.require('translator')
     function getTidFirstPost(tid) {
         return socket.emit('topics.loadMore', {
             tid,
@@ -52,7 +49,7 @@
     function createPreview(topicElem) {
         let tid = parseInt(topicElem.attr('data-tid'));
         if (!$('#preview-' + tid).length) {
-            topicElem.find('.content').append('<div class="post-preview" id="preview-' + tid + '"><div class="wrap-post-preview">טוען...</div></div>');
+            topicElem.find('[component="topic/header"]').parent().append('<div class="post-preview" id="preview-' + tid + '"><div class="wrap-post-preview">טוען...</div></div>');
             topicElem.find('.post-preview').hover(function () { $(this).stop(true).fadeIn(); }, function () { $(this).delay(600).fadeOut(); });
             topicElem.find('[component="topic/header"] a').data('my-tid', tid).hover(
                 onhover,
